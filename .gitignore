@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+.DS_Store
+.venv/
+venv/
+env/
+*.log
+*.tmp
+*.temp
+uploads/
+output/
+.matplotlib/
+.numba_cache/
+.pytest_cache/
+.coverage
+coverage.xml
