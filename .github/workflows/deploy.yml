@@ -1,0 +1,19 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build-and-deploy:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build & Run Docker Container
+        run: |
+          docker build -t audio-app .
+          docker stop audio-container 2>/dev/null || true
+          docker rm audio-container 2>/dev/null || true
+          docker run -d -p 8000:8000 --name audio-container audio-app
