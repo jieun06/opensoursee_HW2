@@ -13,7 +13,8 @@ jobs:
 
       - name: Build & Run Docker Container
         run: |
-          docker build -t audio-app .
-          docker stop audio-container 2>/dev/null || true
-          docker rm audio-container 2>/dev/null || true
-          docker run -d -p 8000:8000 --name audio-container audio-app
+          DOCKER_BIN=$(which docker || echo "/usr/local/bin/docker")
+          $DOCKER_BIN build -t audio-app .
+          $DOCKER_BIN stop audio-container 2>/dev/null || true
+          $DOCKER_BIN rm audio-container 2>/dev/null || true
+          $DOCKER_BIN run -d -p 8000:8000 --name audio-container audio-app
